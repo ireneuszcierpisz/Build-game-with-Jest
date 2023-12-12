@@ -2,7 +2,8 @@ let game = {
     currentGame: [],
     score: 0,
     playerMoves: [],
-    choices: [],
+    // array of choices to generate our random move selection
+    choices: ["button1", "button2", "button3", "button4"],
 };
 
 
