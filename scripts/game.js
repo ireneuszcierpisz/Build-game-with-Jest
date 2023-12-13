@@ -6,6 +6,19 @@ let game = {
     choices: ["button1", "button2", "button3", "button4"],
 };
 
+//the newGame function will  initially reset the score to zero,  
+//empty the computer sequence and  empty the player's moves array too;
+function newGame() {
+    game.currentGame = [];
+    game.playerMoves = [];
+    game.score = 0;
+    showScore();
+}
 
-module.exports = { game }; //because we'll be exporting more than  
-//one object and function from this file, so we need to put them in curly braces.
+function showScore() {
+    document.getElementById("score").innerText = game.score;
+}
+
+// we're exporting more than one object and function from this file, 
+// so we need to put them in curly braces.
+module.exports = { game, newGame, showScore }; 
