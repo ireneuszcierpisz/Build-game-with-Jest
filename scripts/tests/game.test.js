@@ -5,7 +5,7 @@
 
 
 // import modules from game.js
-const { game, newGame, showScore } = require("../game");
+const { game, newGame, showScore, addTurn } = require("../game");
 
 
 // ! build the tests first  and create the code incrementally
@@ -55,8 +55,16 @@ describe("newGame works correctly", () => {
     test("should clear the player moves array", () => {
         expect(game.playerMoves.length).toBe(0);
     });
-    test("should clear the computer sequence array", () => {
-        expect(game.currentGame.length).toBe(0);
+
+    // if addTurn() is called at the end of the  newGame function, then tests need to be change. 
+    // test("should clear the computer sequence array", () => {
+    //     expect(game.currentGame.length).toBe(0);
+    // });
+
+    // Instead of testing to see if the currentGame sequence is empty,
+    // we check if it contains one element(which is the new turn just added)
+    test("should add one move to the computer's game array", () => {
+        expect(game.currentGame.length).toBe(1);
     });
 });
 

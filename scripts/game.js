@@ -13,6 +13,14 @@ function newGame() {
     game.playerMoves = [];
     game.score = 0;
     showScore();
+    addTurn();
+}
+
+// adds a randomly  selected button ID to the sequence
+function addTurn() {
+    game.playerMoves = [];
+    game.currentGame.push(game.choices[(Math.floor(Math.random() * 4))]);
+    // showTurns();
 }
 
 function showScore() {
@@ -21,4 +29,4 @@ function showScore() {
 
 // we're exporting more than one object and function from this file, 
 // so we need to put them in curly braces.
-module.exports = { game, newGame, showScore }; 
+module.exports = { game, newGame, showScore, addTurn }; 
