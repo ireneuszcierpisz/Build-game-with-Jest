@@ -27,6 +27,13 @@ function showScore() {
     document.getElementById("score").innerText = game.score;
 }
 
+function lightsOn(circ) {
+    document.getElementById(circ).classList.add("light");
+    setTimeout(function () {
+        document.getElementById(circ).classList.remove("light");
+    }, 400);
+}
+
 // we're exporting more than one object and function from this file, 
 // so we need to put them in curly braces.
-module.exports = { game, newGame, showScore, addTurn }; 
+module.exports = { game, newGame, showScore, addTurn, lightsOn }; 
