@@ -14,6 +14,32 @@ function newGame() {
     game.currentGame = [];
     game.playerMoves = [];
     game.score = 0;
+    // add the event listeners to the newGame function
+    // check the  attribute of each circle 
+    for (let circle of document.getElementsByClassName("circle")) {
+        // and if the attribute is set to false, then add event listener 'click'
+        if (circle.getAttribute("data-listener") !== "true") {
+            // add an event listener to the html element of class 'circle'
+            // pass in the 'click' event object as 'e'
+            circle.addEventListener("click", (e) => {
+                // get click targets ID (depending on which circle we click it'll be button1, button2, button3 or button4
+                // and store that ID in move
+                let move = e.target.getAttribute("id");
+                // call lightsOn with move, that will illuminate the correct circle
+                lightsOn(move);
+                // push that 'move' into game.playerMoves 
+                game.playerMoves.push(move);
+                // call 'playerTurn'  function
+                playerTurn();
+            });
+            // after adding the event listener, sets the data listener attribute on the circle to 'true'
+            circle.setAttribute("data-listener", "true");
+            /* 
+            If we want to confirm that an event listener has been attached to the DOM,  
+            we need to use something like global state or an attribute to do it. 
+            */
+        }
+    }
     showScore();
     addTurn();
 }
