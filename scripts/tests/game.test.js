@@ -5,7 +5,13 @@
 
 
 // import modules from game.js
-const { game, newGame, showScore, addTurn, lightsOn, showTurns } = require("../game");
+const { game, newGame, showScore, addTurn, lightsOn, showTurns, playerTurn } = require("../game");
+
+// use Jest to  check if an alert has been called
+// a Jest spy  will wait and only report when it sees some interesting activity
+// the first argument to spyOn is the window(as alert is a method of the window object)
+// the second argument is the name of the method, in this case "alert"
+jest.spyOn(window, "alert").mockImplementation(() => { });
 
 
 // ! build the tests first  and create the code incrementally
@@ -112,6 +118,17 @@ describe("gameplay works correctly", () => {
         game.turnNumber = 42;
         showTurns();
         expect(game.turnNumber).toBe(0);
+    });
+    test("should increment the score if the turn is correct", () => {
+        game.playerMoves.push(game.currentGame[0]);
+        playerTurn();
+        expect(game.score).toBe(1);
+    });
+    test("clicking during computer sequence should fail", () => {
+        showTurns();
+        game.lastButton = "";
+        document.getElementById("button2").click();
+        expect(game.lastButton).toEqual("");
     });
 });
 

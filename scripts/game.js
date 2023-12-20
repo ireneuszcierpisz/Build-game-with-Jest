@@ -79,7 +79,21 @@ function showTurns() {
     }, 800);
 }
 
+function playerTurn() {
+    let i = game.playerMoves.length - 1;
+    if (game.currentGame[i] === game.playerMoves[i]) {
+        if (game.currentGame.length === game.playerMoves.length) {
+            game.score++;
+            showScore();
+            addTurn();
+        }
+    } else {
+        alert("Wrong move!");
+        newGame();
+    }
+}
+
 
 // we're exporting more than one object and function from this file, 
 // so we need to put them in curly braces.
-module.exports = { game, newGame, showScore, addTurn, lightsOn, showTurns }; 
+module.exports = { game, newGame, showScore, addTurn, lightsOn, showTurns, playerTurn }; 
